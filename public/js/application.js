@@ -6,6 +6,7 @@ $(document).ready(function() {
       if ($("#" + i + " ."+column).hasClass('filled_red') || $("#" + i + " ."+column).hasClass('filled_blue')){
       } else {
         $("#" + i + " ."+column).addClass('filled_red')
+        winner();
         break;
       } //if
     } //for
@@ -19,14 +20,16 @@ $(document).ready(function() {
         $("#" + i + " ."+column).addClass('filled_blue')
         // var cell = $("#" + i + " ."+column))
         // winner(cell)
+        winner();
         break;
       } //if
     } //for
   } //single_click
 
-  // } //winner
+   //winner
 
   var DELAY = 300, clicks = 0, timer = null;
+
   $("td").on("click", function(e){
     var current = this
     clicks++;  //count clicks
@@ -45,26 +48,64 @@ $(document).ready(function() {
     .on("dblclick", function(e){
         e.preventDefault();  //cancel system double-click event
       });
-});
 
 
 var winner = function(){
-  var count = 0;
-  var column = $(current).attr('class');
-  var y = 1
-
-  // Have x increase by 1 until it reaches a value of 7, then x resets to 0 and y increases by 1
 
 
 
 
-  for (var x = 1; x <=7; x++ ) {
-      //Logic ->
-
-    for (var y; y <=7; y++) {
-      //logic ->
 
 
+  // var column =$(this).attr('id=y_index');
+  var y_index = 1
+  var x_index = 1
+  var count_blue = 0
+  var count_red = 0
+
+  while (y_index < 7){
+
+    while (x_index < 8) {
+
+      var current_position = $('tr#' + x_index + " ." + y_index);
+
+      if (current_position.hasClass('filled_blue')){
+          count_blue++;
+          count_red = 0
+          x_index += 1
+        } else if (current_position.hasClass('filled_red')){
+          count_red++;
+          count_blue = 0
+          x_index += 1
+        } else if (current_position.hasClass('filled_red') === false || current_position.hasClass('filled_blue') === false) {
+          count_red = 0;
+          count_blue = 0
+          x_index += 1
+      };
     }
+
+
+        if (count_blue === 4) {
+          alert("Blue Wins!")
+          break;
+        } else if (count_red === 4) {
+          alert("Red Wins!")
+          break;
+        } else {
+            y_index += 1
+            x_index = 0
+    }      // debugger
   }
-}
+});
+
+
+
+
+
+
+
+
+
+
+
+
