@@ -7,7 +7,7 @@ $(document).ready(function() {
       } else {
         $("#" + i + " ."+column).addClass('filled_red')
         winner_vertical();
-        // winner_horizontal();
+        winner_horizontal();
         break;
       } //if
     } //for
@@ -22,7 +22,7 @@ $(document).ready(function() {
         // var cell = $("#" + i + " ."+column))
         // winner(cell)
         winner_vertical();
-        // winner_horizontal();
+        winner_horizontal();
         break;
       } //if
     } //for
