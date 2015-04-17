@@ -17,23 +17,40 @@ $(document).ready(function() {
       if ($("#" + i + " ."+column).hasClass('filled_blue') || $("#" + i + " ."+column).hasClass('filled_red')){
       } else {
         $("#" + i + " ."+column).addClass('filled_blue')
-        // var cell = $("#" + i + " ."+column))
-        // winner(cell)
+        var cell = $("#" + i + " ."+column)
+        diagonal_winner(cell)
+
         break;
       } //if
     } //for
   } //single_click
 
-  // var winner = function(cell) {
-  //   var vertical_check = function(cell) {
-  //     var horizontalCheck = function(){
-  //       for (var i=0; i<5; i++){
-  //         var row = $("#" + i + " ."+column)
-  //         if // row of 4
-  //       }
-  //     }
-  //   }
+  var diagonal_winner = function(cell) {
+    var init_column = parseInt(cell.attr('class')[0]) //+1
+    var init_row = parseInt(cell.parent().attr('id')) //-1
+    var color = cell.attr('class').split(" ")[1]
+    if($('#'+(init_row-1)+ ' .'+(init_column+1)).hasClass(color)){
+      console.log("yes!")
+    } else {
+      debugger
+      console.log("no!")
+    }
+  }
 
+  var horizontal_winner = function(cell) {
+    var init_column = parseInt(cell.attr('class')[0]) //+1
+    var init_row = parseInt(cell.parent().attr('id')) //-1
+    var color = cell.attr('class').split(" ")[1]
+    for(var i=6; i<0; i--) {
+      var counter = 1
+      if($('#'+i+ ' .'+(init_column)).hasClass(color){
+        counter++
+        if (counter > 4) {
+          console.log("We got a winner")
+        } else
+      }
+    }
+  }
   // } //winner
 
   var DELAY = 300, clicks = 0, timer = null;
