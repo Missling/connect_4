@@ -6,7 +6,8 @@ $(document).ready(function() {
       if ($("#" + i + " ."+column).hasClass('filled_red') || $("#" + i + " ."+column).hasClass('filled_blue')){
       } else {
         $("#" + i + " ."+column).addClass('filled_red')
-        winner();
+        winner_vertical();
+        // winner_horizontal();
         break;
       } //if
     } //for
@@ -20,7 +21,8 @@ $(document).ready(function() {
         $("#" + i + " ."+column).addClass('filled_blue')
         // var cell = $("#" + i + " ."+column))
         // winner(cell)
-        winner();
+        winner_vertical();
+        // winner_horizontal();
         break;
       } //if
     } //for
@@ -50,31 +52,26 @@ $(document).ready(function() {
       });
 
 
-var winner = function(){
-
-
-
-
-
-
-  // var column =$(this).attr('id=y_index');
+var winner_vertical = function(){
   var y_index = 1
   var x_index = 1
-  var count_blue = 0
-  var count_red = 0
+
 
   while (y_index < 7){
 
-    while (x_index < 8) {
+    var count_blue = 0
+    var count_red = 0
 
+
+    while (x_index < 8) {
       var current_position = $('tr#' + x_index + " ." + y_index);
 
       if (current_position.hasClass('filled_blue')){
-          count_blue++;
+          count_blue += 1;
           count_red = 0
           x_index += 1
         } else if (current_position.hasClass('filled_red')){
-          count_red++;
+          count_red += 1;
           count_blue = 0
           x_index += 1
         } else if (current_position.hasClass('filled_red') === false || current_position.hasClass('filled_blue') === false) {
@@ -82,20 +79,58 @@ var winner = function(){
           count_blue = 0
           x_index += 1
       };
-    }
-
-
-        if (count_blue === 4) {
-          alert("Blue Wins!")
+          if (count_blue === 4) {
+          alert("Blue Wins!");
           break;
         } else if (count_red === 4) {
-          alert("Red Wins!")
+          alert("Red Wins!");
           break;
-        } else {
-            y_index += 1
-            x_index = 0
-    }      // debugger
-  }
+        }
+      }
+        y_index += 1
+        x_index = 0
+    };
+  };
+
+  var winner_horizontal = function(){
+    var y_index = 1
+    var x_index = 1
+
+
+  while (x_index < 8){
+
+    var count_blue = 0
+    var count_red = 0
+
+
+    while (y_index < 7) {
+      var current_position = $('tr#' + x_index + " ." + y_index);
+
+      if (current_position.hasClass('filled_blue')){
+          count_blue += 1;
+          count_red = 0
+          y_index += 1
+        } else if (current_position.hasClass('filled_red')){
+          count_red += 1;
+          count_blue = 0
+          y_index += 1
+        } else if (current_position.hasClass('filled_red') === false || current_position.hasClass('filled_blue') === false) {
+          count_red = 0;
+          count_blue = 0
+          y_index += 1
+      };
+          if (count_blue === 4) {
+          alert("Blue Wins!");
+          break;
+        } else if (count_red === 4) {
+          alert("Red Wins!");
+          break;
+        }
+      }
+        y_index = 0
+        x_index += 1
+    };
+  };
 });
 
 
