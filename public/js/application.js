@@ -24,16 +24,6 @@ $(document).ready(function() {
     } //for
   } //single_click
 
-  // var winner = function(cell) {
-  //   var vertical_check = function(cell) {
-  //     var horizontalCheck = function(){
-  //       for (var i=0; i<5; i++){
-  //         var row = $("#" + i + " ."+column)
-  //         if // row of 4
-  //       }
-  //     }
-  //   }
-
   // } //winner
 
   var DELAY = 300, clicks = 0, timer = null;
@@ -56,3 +46,25 @@ $(document).ready(function() {
         e.preventDefault();  //cancel system double-click event
       });
 });
+
+
+var winner = function(){
+  var count = 0;
+  var column = $(current).attr('class');
+  var y = 1
+
+  // Have x increase by 1 until it reaches a value of 7, then x resets to 0 and y increases by 1
+
+
+
+
+  for (var x = 1; x <=7; x++ ) {
+      //Logic ->
+
+    for (var y; y <=7; y++) {
+      //logic ->
+
+
+    }
+  }
+}
